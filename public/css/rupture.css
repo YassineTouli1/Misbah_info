@@ -1,0 +1,57 @@
+
+.ingredient-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 2rem;
+    justify-content: center;
+}
+
+.ingredient-card {
+    background: linear-gradient(to right, #ffe5e5, #fff0f0);
+    border: 1px solid #ff4d4d;
+    border-left: 6px solid #ff1a1a;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.1);
+    width: 280px;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.ingredient-card:hover {
+    transform: scale(1.03);
+}
+
+.icon-wrapper {
+    font-size: 30px;
+    color: #e60000;
+    flex-shrink: 0;
+    padding-top: 5px;
+}
+
+.ingredient-details h2 {
+    font-size: 18px;
+    color: #333;
+    margin: 0 0 5px 0;
+}
+
+.ingredient-details p {
+    margin: 0;
+    color: #555;
+}
+
+.alert-text {
+    color: #cc0000;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.no-rupture {
+    text-align: center;
+    font-size: 18px;
+    color: green;
+    margin-top: 40px;
+}
