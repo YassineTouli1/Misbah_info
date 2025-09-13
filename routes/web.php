@@ -2,17 +2,9 @@
 use Illuminate\Support\Facades\Route;
 
 // Health check routes for Railway
-Route::get('/health', function () {
-    return response()->json([
-        'status' => 'ok',
-        'timestamp' => now(),
-        'service' => 'snack-app'
-    ]);
-});
+Route::get('/health', fn() => response()->json(['status' => 'ok']));
 
-Route::get('/ping', function () {
-    return 'pong';
-});
+
 //les conroleurs actions
 use App\Http\Controllers\Manager\MenuItemController\StoreMenuItemController;
 use App\Http\Controllers\Manager\MenuItemController\IndexMenuItemController;
