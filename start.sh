@@ -15,6 +15,11 @@ fi
 # Ensure logs go to container stdout/stderr
 export LOG_CHANNEL=${LOG_CHANNEL:-stderr}
 
+# Avoid DB-backed cache & session during boot
+export CACHE_STORE=${CACHE_STORE:-file}
+export CACHE_DRIVER=${CACHE_DRIVER:-file}
+export SESSION_DRIVER=${SESSION_DRIVER:-file}
+
 # Ensure an APP_KEY exists even without .env
 if [ -z "$APP_KEY" ]; then
     echo "🔑 No APP_KEY found. Generating one for runtime..."
