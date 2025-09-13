@@ -1,7 +1,2 @@
 [start]
 cmd = "bash start.sh"
-
-[phases.setup]
-# Ensure PHP has PostgreSQL extensions available in the container
-# This is required for Laravel's pgsql driver to work on Railway
-nixPkgs = ["php82Extensions.pdo_pgsql", "php82Extensions.pgsql"]
