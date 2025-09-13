@@ -16,7 +16,8 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', env('RAILWAY_ENVIRONMENT') ? 'pgsql' : 'sqlite'),
+    // Default to SQLite unless a DB is explicitly configured
+    'default' => env('DB_CONNECTION', env('DB_URL') ? 'pgsql' : 'sqlite'),
 
     /*
     |--------------------------------------------------------------------------

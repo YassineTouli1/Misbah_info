@@ -6,10 +6,35 @@ echo "🚀 Starting Snack App on Railway..."
 # Set the port
 export PORT=${PORT:-8000}
 
-# Generate app key if not set
+# Map Railway DATABASE_URL to Laravel DB_URL if present
+if [ -n "$DATABASE_URL" ] && [ -z "$DB_URL" ]; then
+    echo "🔗 Mapping DATABASE_URL -> DB_URL"
+    export DB_URL="$DATABASE_URL"
+fi
+
+# Ensure logs go to container stdout/stderr
+export LOG_CHANNEL=${LOG_CHANNEL:-stderr}
+
+# Ensure an APP_KEY exists even without .env
 if [ -z "$APP_KEY" ]; then
-    echo "🔑 Generating application key..."
-    php artisan key:generate --force
+    echo "🔑 No APP_KEY found. Generating one for runtime..."
+    export APP_KEY="base64:$(php -r 'echo base64_encode(random_bytes(32));')"
+    # Best-effort write to .env if it exists
+    if [ -f .env ]; then
+        sed -i "s/^APP_KEY=.*/APP_KEY=${APP_KEY//\//\/}/" .env 2>/dev/null || true
+    fi
+fi
+
+# If no DB configured, default to SQLite and ensure file exists
+if [ -z "$DB_CONNECTION" ] && [ -z "$DB_URL" ]; then
+    export DB_CONNECTION=sqlite
+    export DB_DATABASE="$(pwd)/database/database.sqlite"
+    echo "🗃️ Using SQLite at $DB_DATABASE"
+    mkdir -p "$(pwd)/database" || true
+    if [ ! -f "$DB_DATABASE" ]; then
+        touch "$DB_DATABASE"
+    fi
+    chmod 664 "$DB_DATABASE" || true
 fi
 
 # Set permissions
@@ -18,13 +43,17 @@ chmod -R 775 storage bootstrap/cache
 
 # Clear and cache configuration
 echo "🧹 Optimizing application..."
+php artisan config:clear
+php artisan cache:clear
 php artisan config:cache
-php artisan route:cache
+php artisan route:clear
 php artisan view:cache
 
-# Run migrations
+# Run migrations (non-blocking)
 echo "🗄️ Running database migrations..."
-php artisan migrate --force
+if ! php artisan migrate --force; then
+    echo "⚠️ Migrations failed (likely DB not configured yet). Continuing to serve the app."
+fi
 
 # Start the application
 echo "🌐 Starting web server on port $PORT..."
