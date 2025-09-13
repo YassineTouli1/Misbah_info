@@ -12,6 +12,10 @@ if [ -z "$APP_KEY" ]; then
     php artisan key:generate --force
 fi
 
+# Set permissions
+echo "🔒 Setting permissions..."
+chmod -R 775 storage bootstrap/cache
+
 # Clear and cache configuration
 echo "🧹 Optimizing application..."
 php artisan config:cache
