@@ -39,7 +39,7 @@
     }
 </style>
 
-<x-nav-profile/>
+@include('partials.nav-profile')
 <div class="container">
     <div class="table-header">
         <h2>Liste des Avis</h2>

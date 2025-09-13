@@ -323,7 +323,7 @@
 </head>
 <body>
 <!-- Navbar -->
-<x-nav-profile />
+@include('partials.nav-profile')
 
 <!-- Main Content -->
 <div class="client-container">
