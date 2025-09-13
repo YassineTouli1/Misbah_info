@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- Navbar -->
-<x-nav/>
+@include('partials.nav')
 
 <!-- Register Form -->
 <div class="register-page">

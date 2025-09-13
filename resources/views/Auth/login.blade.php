@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- Navbar -->
-<x-nav/>
+@include('partials.nav')
 <!-- Login Form -->
 <div class="login-page">
     <div class="login-container">

@@ -10,7 +10,7 @@
 </head>
 <body>
 <!-- Navbar -->
-<x-nav/>
+@include('partials.nav')
 <div class="login-page">
     <div class="login-container">
         <h2 class="login-title">Mot de passe oublié</h2>

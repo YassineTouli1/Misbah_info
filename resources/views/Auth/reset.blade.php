@@ -10,7 +10,7 @@
 </head>
 <body>
 <!-- Navbar -->
-<x-nav/>
+@include('partials.nav')
 <!-- Reset Password Form -->
 <div class="login-page">
     <div class="login-container">

@@ -12,7 +12,7 @@
 <body>
 
 <!-- Navbar -->
-<x-nav/>
+@include('partials.nav')
 
 <!-- Hero Section -->
 <section id="home" class="hero">
