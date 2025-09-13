@@ -42,6 +42,14 @@ if [ -z "$DB_CONNECTION" ] && [ -z "$DB_URL" ]; then
     chmod 664 "$DB_DATABASE" || true
 fi
 
+# Ensure storage directories exist
+echo "🗂️ Ensuring storage directories exist..."
+mkdir -p storage/framework/sessions \
+         storage/framework/views \
+         storage/framework/cache \
+         storage/logs \
+         bootstrap/cache
+
 # Set permissions
 echo "🔒 Setting permissions..."
 chmod -R 775 storage bootstrap/cache
