@@ -14,6 +14,6 @@ class IndexReviewClientController extends Controller
         $reviews = Review::where('user_id', Auth::id())
             ->orderBy('created_at', 'desc')
             ->get();
-        return view('client.review.indexReview', compact('reviews'));
+        return view('client.review.IndexReview', compact('reviews'));
     }
 }
