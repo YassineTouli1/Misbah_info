@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image', 255)->nullable();
             $table->decimal('price', 8, 2);
-            $table->foreignId('category_id')->constrained('category')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,3 +25,5 @@ return new class extends Migration
         Schema::dropIfExists('menu_items');
     }
 };
+///////////////////////////
+
