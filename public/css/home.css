@@ -17,6 +17,8 @@ body {
     background-color: #f9f9f9;
     color: var(--dark);
     overflow-x: hidden;
+    /* Ensure content is not hidden behind fixed navbar */
+    padding-top: 80px;
 }
 
 /* Hero Section */
