@@ -1,5 +1,2 @@
 [start]
 cmd = "bash start.sh"
-
-[providers.php]
-extensions = ["pdo_pgsql", "pgsql", "pdo_sqlite", "sqlite3"]
