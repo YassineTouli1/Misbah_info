@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 // Health check routes for Railway
 Route::get('/health', fn() => response()->json(['status' => 'ok']));
 
+// Lightweight ping endpoint for runtime diagnostics
+Route::get('/ping', fn() => response()->json([
+    'status' => 'ok',
+    'timestamp' => now()->toISOString(),
+]))->name('ping');
+
 
 //les conroleurs actions
 use App\Http\Controllers\Manager\MenuItemController\StoreMenuItemController;
