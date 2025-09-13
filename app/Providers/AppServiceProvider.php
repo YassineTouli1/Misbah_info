@@ -23,10 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Force HTTPS in production to avoid mixed-content (assets and routes)
-        if (config('app.env') === 'production' || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) {
-            URL::forceScheme('https');
-        }
+
+        
+            if (app()->environment('production')) {
+                URL::forceScheme('https');
+            }
+        
+
 
         // Be defensive during composer package:discover and early boot where DB may not be ready
         try {
@@ -56,3 +59,4 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 }
+
