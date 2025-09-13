@@ -47,7 +47,7 @@ php artisan config:clear
 php artisan cache:clear
 php artisan config:cache
 php artisan route:clear
-php artisan view:cache
+php artisan view:clear
 
 # Run migrations (non-blocking)
 echo "🗄️ Running database migrations..."

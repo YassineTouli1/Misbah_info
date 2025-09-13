@@ -134,7 +134,7 @@ Route::post('/login', StoreLoginController::class)->name('login.store');
 Route::post('/logout', LogoutController::class)->name('logout');
 //les controleurs de Registre
 Route::get('/register', CreateRegistreController::class)->name('register');
-Route::post('/register', StoreRegistreController::class)->name('register');
+Route::post('/register', StoreRegistreController::class)->name('register.store');
 //les controleurs de client partie admin
 Route::get('/clients',IndexClientController::class)->name('clients');
 Route::delete('/clients/{client}', DeleteClientController::class)->name('clients.destroy');
