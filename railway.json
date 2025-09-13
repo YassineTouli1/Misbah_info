@@ -1,10 +1,7 @@
 {
     "$schema": "https://railway.app/railway.schema.json",
     "build": {
-        "builder": "NIXPACKS",
-        "nixpacks": {
-            "providers": ["node", "php"]
-        }
+        "builder": "NIXPACKS"
     },
     "deploy": {
         "startCommand": "bash start.sh",
@@ -12,20 +9,5 @@
         "healthcheckTimeout": 30,
         "restartPolicyType": "ON_FAILURE",
         "restartPolicyMaxRetries": 5
-    },
-    "builds": [
-        {
-            "src": ".",
-            "use": "@railway/static@^0.3.0"
-        }
-    ],
-    "routes": [
-        {
-            "handle": "filesystem"
-        },
-        {
-            "src": ".*",
-            "dest": "/index.php"
-        }
-    ]
+    }
 }
