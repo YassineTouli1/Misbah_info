@@ -40,7 +40,7 @@
                     <h1 class="h4 mb-4 text-center">Modifier votre avis</h1>
                     <form method="POST" action="{{ route('review.update', $review->id) }}">
                         @csrf
-                        <x-form-error/>
+                        @include('partials.form-error')
                         @method('PUT')
                         <div class="mb-3">
                             <label class="form-label d-block mb-2">Votre note</label>

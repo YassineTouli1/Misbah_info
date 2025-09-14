@@ -58,7 +58,7 @@
             <form action="{{ route('ingredient.update',$ingredient->id) }}" method="POST" class="form-style" enctype="multipart/form-data">
                 @csrf
                 @method('put')
-                <x-form-error/>
+                @include('partials.form-error')
 
                 <div class="form-group">
                     <label for="name">Nom d'ingredient</label>

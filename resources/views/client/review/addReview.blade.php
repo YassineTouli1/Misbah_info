@@ -173,7 +173,7 @@
 <div class="container">
     <form action="{{ route('review.store') }}" method="POST" class="edit-form">
         @csrf
-        <x-form-error/>
+        @include('partials.form-error')
         <h2 class="form-title">Donner votre avis</h2>
 
         @auth

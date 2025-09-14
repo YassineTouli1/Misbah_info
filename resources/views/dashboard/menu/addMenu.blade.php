@@ -52,7 +52,7 @@
 
         <form action="{{ route('menu.store') }}" method="POST" class="form-style" enctype="multipart/form-data">
             @csrf
-            <x-form-error/>
+            @include('partials.form-error')
 
             <div class="form-group">
                 <label for="title">Nom du menu</label>

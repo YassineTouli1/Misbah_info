@@ -47,7 +47,7 @@
     <div class="main-content">
         <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data" class="add-client-form-section">
             @csrf
-            <x-form-error/>
+            @include('partials.form-error')
             <div class="form-style">
 
                 <!-- Titre du Hero -->

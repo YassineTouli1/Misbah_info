@@ -16,7 +16,7 @@
         <h2 class="login-title">Mot de passe oublié</h2>
         <form method="POST" action="{{ route('password.email') }}">
             @csrf
-            <x-form-error/>
+            @include('partials.form-error')
             <div class="form-group">
                 <label for="email">Adresse Email</label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="votre@email.com" required autofocus>

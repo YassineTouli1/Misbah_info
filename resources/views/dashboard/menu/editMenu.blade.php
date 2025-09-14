@@ -45,7 +45,7 @@
         <section class="add-client-form-section">
             <form action="{{route('editMenu.update',$menu->id)}}" method="POST" class="form-style">
                 @csrf
-                <x-form-error/>
+                @include('partials.form-error')
                 @method('put')
                 <div class="form-group">
                     <label for="title">Title de menu</label>

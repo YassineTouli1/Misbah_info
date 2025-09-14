@@ -46,7 +46,7 @@
         <section class="add-client-form-section">
             <form action="{{ route('stock.store') }}" method="POST" class="form-style" enctype="multipart/form-data">
                 @csrf
-                <x-form-error/>
+                @include('partials.form-error')
 
                 <div class="form-group">
                     <label for="name">Nom d'ingredient</label>

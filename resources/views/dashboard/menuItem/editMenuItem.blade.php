@@ -44,7 +44,7 @@
         <section class="add-client-form-section">
             <form action="{{ route('editMenuItem.update',$menuItem->id) }}" method="POST" class="form-style" enctype="multipart/form-data">
                 @csrf
-                <x-form-error/>
+                @include('partials.form-error')
                 @method('put')
                 <div class="form-group">
                     <label for="name">Nom du plat</label>

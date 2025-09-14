@@ -17,7 +17,7 @@
         <h2 class="login-title">Réinitialiser le mot de passe</h2>
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
-            <x-form-error/>
+            @include('partials.form-error')
             <input type="hidden" name="token" value="{{ $token }}">
             <input type="hidden" name="email" value="{{ $email }}">
 
