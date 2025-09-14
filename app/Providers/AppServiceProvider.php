@@ -23,8 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Register form-error component alias
-        \Illuminate\Support\Facades\Blade::component('form-error', \Illuminate\View\Component::class);
 
         if (app()->environment('production')) {
             URL::forceScheme('https');

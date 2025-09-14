@@ -25,6 +25,6 @@ class UpdateReviewClientController extends Controller
             'rating' => $validated['rating'],
             'review' => $validated['comment'],
         ]);
-        return redirect()->route('client.review.Index')->with('success', 'Avis modifié avec succès.');
+        return redirect()->route('client.review.IndexReview')->with('success', 'Avis modifié avec succès.');
     }
 }
