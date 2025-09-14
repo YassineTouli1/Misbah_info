@@ -31,9 +31,9 @@
 </style>
 </head>
 <body>
-    <x-nav-manager/>
+    @include('partials.nav-manager')
     <div class="dashboard-container">
-        <x-sideNav/>
+        @include('partials.sideNav')
         <div class="main-container">
             <div class="caisse-container">
                 <div class="caisse-header">

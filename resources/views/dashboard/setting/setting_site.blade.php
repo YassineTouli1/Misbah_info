@@ -37,11 +37,11 @@
         background-color: #fb8c00; /* un peu plus foncé au hover */
     }
 </style>
-<x-nav-manager></x-nav-manager>
+@include('partials.nav-manager')
 
 <div class="dashboard-container">
     <!-- Sidebar -->
-    <x-sideNav></x-sideNav>
+    @include('partials.sideNav')
 
     <!-- Main content -->
     <div class="main-content">

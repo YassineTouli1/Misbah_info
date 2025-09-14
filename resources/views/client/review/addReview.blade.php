@@ -168,7 +168,7 @@
 <body>
 
 <!-- Navbar -->
-<x-nav-profile/>
+@include('partials.nav-profile')
 
 <div class="container">
     <form action="{{ route('review.store') }}" method="POST" class="edit-form">

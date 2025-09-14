@@ -5,7 +5,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <x-head-dashboard/>
 <body>
-<x-nav-manager/>
+@include('partials.nav-manager')
 <style>
     .table {
         width: 100%;
@@ -154,7 +154,7 @@
 
 <div class="dashboard-container" style="margin-top:70px;">
     <!-- Sidebar -->
-    <x-sideNav></x-sideNav>
+    @include('partials.sideNav')
 
     <!-- Main Content -->
     <main class="main-content">

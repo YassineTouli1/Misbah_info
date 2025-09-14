@@ -2,7 +2,7 @@
 <html lang="fr">
 <x-head-dashboard/>
 <body>
-<x-nav-manager/>
+@include('partials.nav-manager')
 <style>
     .card {
         border: 1px solid rgba(0, 0, 0, 0.125);
@@ -96,7 +96,7 @@
 
 <div class="dashboard-container">
     <!-- Sidebar -->
-    <x-sideNav></x-sideNav>
+    @include('partials.sideNav')
 
     <!-- Main Content -->
     <main class="main-content">

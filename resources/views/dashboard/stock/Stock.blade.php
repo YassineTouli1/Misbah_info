@@ -26,9 +26,9 @@
     }
 
 </style>
-<x-nav-manager/>
+@include('partials.nav-manager')
 <div class="dashboard-container" style="margin-top:70px;">
-    <x-sideNav/>
+    @include('partials.sideNav')
     <main class="main-content">
         <div class="dashboard-header">
             <h1 class="dashboard-title">Stock</h1>

@@ -29,12 +29,12 @@
     }
 </style>
 
-<x-nav-manager></x-nav-manager>
+@include('partials.nav-manager')
 
 <!-- Dashboard Container -->
 <div class="dashboard-container">
     <!-- Sidebar -->
-    <x-sideNav></x-sideNav>
+    @include('partials.sideNav')
 
     <!-- Main Content -->
     <main class="main-content">
