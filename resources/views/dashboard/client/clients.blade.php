@@ -27,7 +27,7 @@
     }
 </style>
 
-<x-nav-manager/>
+@include('partials.nav-manager')
 <div class="dashboard-container" style="margin-top:70px;">
     <x-sideNav/>
     <main class="main-content">

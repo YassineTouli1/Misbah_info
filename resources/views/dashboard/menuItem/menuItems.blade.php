@@ -25,7 +25,7 @@
         background-color: #fb8c00; /* un peu plus foncé au hover */
     }
 </style>
-<x-nav-manager/>
+@include('partials.nav-manager')
 <div class="dashboard-container" style="margin-top:70px;">
     <x-sideNav/>
     <main class="main-content">
