@@ -34,10 +34,10 @@ class StoreLoginController extends Controller
         // Find user by email (case insensitive)
         $user = User::whereRaw('LOWER(email) = ?', [$email])->first();
 
-        if (!$user) {
-            return back()->withInput($request->only('email'))
-                         ->withErrors(['email' => 'Utilisateur non trouvé.']);
-        }
+        // if (!$user) {
+        //     return back()->withInput($request->only('email'))
+        //                  ->withErrors(['email' => 'Utilisateur non trouvé.']);
+        // }
 
         // Check password
         if (!Hash::check($request->password, $user->password)) {
