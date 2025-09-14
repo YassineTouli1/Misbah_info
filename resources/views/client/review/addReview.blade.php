@@ -220,7 +220,7 @@
             <button type="submit" class="btn-update">
                 <i class="fas fa-check"></i> Envoyer l'avis
             </button>
-            <a href="#" class="btn-back">Retour</a>
+            <a href="{{ route('review.index') }}" class="btn-back">Retour</a>
         </div>
     </form>
 </div>
