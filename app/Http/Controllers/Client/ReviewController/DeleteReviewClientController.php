@@ -12,6 +12,6 @@ class DeleteReviewClientController extends Controller
     {
         $review = Review::findOrFail($reviewId);
         $review->delete();
-        return redirect()->route('client.review.IndexReview')->with('success', 'Avis supprimé avec succès.');
+        return redirect()->route('review.index')->with('success', 'Avis supprimé avec succès.');
     }
 }
