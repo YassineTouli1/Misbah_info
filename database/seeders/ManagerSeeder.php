@@ -11,15 +11,17 @@ class ManagerSeeder extends Seeder
 {
     public function run()
     {
+        $user = User::firstOrCreate(
+            ['email' => 'gerant@snack.com'], // check by email
+            [
+                'name' => 'Gérant Principal',
+                'password' => Hash::make('Hello@1234pass'),
+                'role' => 'gerant',
+            ]
+        );
 
-        $user = User::create([
-            'name' => 'Gérant Principal',
-            'email' => 'gerant@snack.com',
-            'password' => Hash::make('Hello@1234pass'),
-            'role' => 'gerant',
-        ]);
-
-        Manager::create([
+        // Only create Manager if not exists
+        Manager::firstOrCreate([
             'user_id' => $user->id,
         ]);
     }
