@@ -16,7 +16,7 @@ class StoreLoginController extends Controller
             'ip' => $request->ip()
         ]);
 
-        // Valider les données de la requête
+        // Validate input
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -26,12 +26,11 @@ class StoreLoginController extends Controller
             'password.required' => 'Le mot de passe est requis.',
         ]);
 
-        // Tenter l'authentification
+        // Attempt login
         $credentials = $request->only('email', 'password');
-        
+
         if (!Auth::attempt($credentials, $request->boolean('remember'))) {
             Log::warning('Échec de l\'authentification', ['email' => $request->email]);
-            
             return back()
                 ->withInput($request->only('email'))
                 ->withErrors([
@@ -39,7 +38,7 @@ class StoreLoginController extends Controller
                 ]);
         }
 
-        // Régénérer la session pour prévenir les attaques de fixation de session
+        // Regenerate session
         $request->session()->regenerate();
 
         Log::info('Authentification réussie', [
@@ -48,16 +47,16 @@ class StoreLoginController extends Controller
             'user_role' => Auth::user()->role
         ]);
 
-        // Rediriger en fonction du rôle de l'utilisateur
+        // Redirect based on role
         if (Auth::user()->role === 'client') {
-            Log::info('Redirection du client vers /client/home');
-            return redirect('/client/home')
-                ->with('success', 'Connexion réussie !');
+            return redirect()->route('client.home')
+                             ->with('success', 'Connexion réussie !');
+        } elseif (Auth::user()->role === 'gerant') {
+            return redirect()->route('dashboard')
+                             ->with('success', 'Connexion réussie !');
         }
 
-        // Pour les gérants et autres rôles
-        Log::info('Redirection du gérant vers /dashboard');
-        return redirect('/dashboard')
-            ->with('success', 'Connexion réussie !');
+        // Default fallback
+        return redirect('/')->with('error', 'Rôle inconnu.');
     }
 }
