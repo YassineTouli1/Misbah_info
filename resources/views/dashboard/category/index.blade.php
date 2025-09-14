@@ -3,7 +3,7 @@
     <!-- Dans le head de votre layout principal -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<x-head-dashboard/>
+@include('partials.head-dashboard')
 <body>
 @include('partials.nav-manager')
 <style>

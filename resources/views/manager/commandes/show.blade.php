@@ -17,7 +17,7 @@
                             Commande #{{ $commande->id }}
                         </h2>
                         <div class="mt-1">
-                            <x-order-status :status="$commande->statut" size="sm" />
+                            @include('partials.order-status', ['status' => $commande->statut, 'size' => 'sm'])
                             @if($commande->statut === 'livree')
                                 <span class="ml-2 text-sm text-gray-500">
                                     Livrée le {{ $commande->date_livraison->format('d/m/Y H:i') }}
@@ -88,7 +88,7 @@
                             
                             <p class="text-sm">
                                 <span class="font-medium text-gray-600">Statut :</span> 
-                                <x-order-status :status="$commande->statut" size="sm" />
+                                @include('partials.order-status', ['status' => $commande->statut, 'size' => 'sm'])
                             </p>
                             
                             @if($commande->date_livraison)

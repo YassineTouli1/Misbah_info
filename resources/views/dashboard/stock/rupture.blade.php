@@ -2,7 +2,7 @@
 <html lang="fr">
 <link rel="stylesheet" href="{{asset('css/rupture.css')}}">
 
-<x-head-dashboard/>
+@include('partials.head-dashboard')
 
 <body>
 @include('partials.nav-manager')

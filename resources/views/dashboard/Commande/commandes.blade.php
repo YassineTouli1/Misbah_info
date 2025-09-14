@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<x-head-dashboard/>
+@include('partials.head-dashboard')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 /* Forcer le centrage vertical de la modale Bootstrap */

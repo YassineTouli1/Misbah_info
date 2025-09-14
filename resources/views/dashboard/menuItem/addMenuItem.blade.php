@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<x-head-dashboard/>
+@include('partials.head-dashboard')
 
 <body>
 <style>
