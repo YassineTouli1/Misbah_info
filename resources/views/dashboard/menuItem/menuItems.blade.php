@@ -108,8 +108,7 @@
 
 </div>
 
-
-<x-deleteModal/>
+@include('partials.deleteModal')
 
 <script src="{{asset('js/deleteModal.js')}}"></script>
 </body>
