@@ -15,7 +15,7 @@ class StoreMenuItemController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
-            'category_id' => 'required|exists:category,id',
+            'category_id' => 'required|exists:categories,id',
             'ingredients' => 'required|array',
             'ingredients.*.id' => 'required|exists:ingredients,id',
             'ingredients.*.quantite' => 'required|numeric|min:0.01',

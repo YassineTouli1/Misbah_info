@@ -17,7 +17,7 @@ class UpdateMenuItemController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'ingredients' => 'sometimes|array',
-            'category_id'=>'required|exists:category,id',
+            'category_id' => 'required|exists:categories,id',
             'ingredients.*' => 'exists:ingredients,id',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
         ]);

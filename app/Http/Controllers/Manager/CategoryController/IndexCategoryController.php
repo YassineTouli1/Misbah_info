@@ -10,9 +10,6 @@ class IndexCategoryController extends Controller
 {
     public function __invoke(Request $request)
     {
-        //debug
-        $category = new Category();
-        dd($category->getTable());
         $categories = Category::all();
         return view('dashboard.category.index', compact('categories'));
     }

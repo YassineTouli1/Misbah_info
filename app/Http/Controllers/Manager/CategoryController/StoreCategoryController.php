@@ -12,7 +12,7 @@ class StoreCategoryController extends Controller
     public function __invoke(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:category,name',
+            'name' => 'required|string|max:255|unique:categories,name',
         ]);
 
         Category::create($validated);
