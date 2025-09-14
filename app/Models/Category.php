@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
-    protected $table = 'category';
+    protected $table = 'categories';
     protected $fillable = ['name'];
 
     public function menuItems(): HasMany
