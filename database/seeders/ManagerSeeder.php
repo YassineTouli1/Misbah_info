@@ -11,7 +11,7 @@ class ManagerSeeder extends Seeder
 {
     public function run()
     {
-        $user = User::firstOrCreate(
+        $user = User::updateOrCreate(
             ['email' => 'gerant@snack.com'], // check by email
             [
                 'name' => 'Gérant Principal',
