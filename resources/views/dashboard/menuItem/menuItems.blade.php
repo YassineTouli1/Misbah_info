@@ -65,8 +65,8 @@
                             <td>
                                 <div class="item-image-container">
                                     @if($item->image)
-                                        <img src="{{ asset('storage/menu_items/' . $item->image) }}"
-                                             alt="{{ $item->name }}"
+                                    <img src="{{ asset('storage/' . $menuItem->image) }}" alt="Menu item">
+                                    alt="{{ $item->name }}"
                                              class="item-image"
                                              style="max-width: 100px; max-height: 100px;"
                                              onerror="this.onerror=null; this.src='{{ asset('images/placeholder.jpg') }}';">
