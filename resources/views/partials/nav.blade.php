@@ -76,7 +76,7 @@
 <nav class="navbar">
     <a href="{{route('home')}}" class="logo" style="display: flex; align-items: center; gap: 10px;">
         @if($settings && $settings->logo_path)
-            <img src="{{ asset('storage/logos' . $settings->logo_path) }}" alt="{{$settings->logo_path}}" style="height: 50px; border-radius: 5px;">
+            <img src="{{ route('image.serve', ['folder' => 'logos', 'filename' => basename($settings->logo_path)]) }}" alt="Logo" style="height: 50px; border-radius: 5px;">
             <span style="color: white">Snack <span style="color: var(--primary)">El Madina</span></span>
         @else
             <span style="color: white">Snack <span style="color: var(--primary)">El Madina</span></span>

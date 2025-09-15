@@ -4,51 +4,26 @@ use Illuminate\Support\Facades\Route;
 // Health check routes for Railway
 Route::get('/health', fn() => response()->json(['status' => 'ok']));
 
-// Debug route for storage configuration
-Route::get('/debug/storage', function() {
-    $menuItem = \App\Models\MenuItem::first();
-    $storagePath = storage_path('app/public');
-    
-    return [
-        'app_url' => config('app.url'),
-        'storage_path' => $storagePath,
-        'storage_exists' => file_exists($storagePath),
-        'public_storage_exists' => file_exists(public_path('storage')),
-        'is_link' => is_link(public_path('storage')),
-        'first_menu_item' => $menuItem ? [
-            'id' => $menuItem->id,
-            'name' => $menuItem->name,
-            'image_path' => $menuItem->image,
-            'storage_url' => Storage::url($menuItem->image),
-            'full_path' => storage_path('app/public/' . $menuItem->image),
-            'file_exists' => Storage::disk('public')->exists($menuItem->image),
-        ] : null,
-        'storage_disk_config' => [
-            'driver' => config('filesystems.disks.public.driver'),
-            'root' => config('filesystems.disks.public.root'),
-            'url' => config('filesystems.disks.public.url'),
-        ],
-    ];
-});
+// Add this near the top with your other routes
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
-// Debug route for image issues
-Route::get('/debug/images', function() {
-    $menuItem = \App\Models\MenuItem::first();
-    return [
-        'app_url' => config('app.url'),
-        'storage_url' => \Illuminate\Support\Facades\Storage::url('test'),
-        'first_menu_item' => $menuItem ? [
-            'id' => $menuItem->id,
-            'name' => $menuItem->name,
-            'image_path' => $menuItem->image,
-            'storage_url' => $menuItem->image ? \Illuminate\Support\Facades\Storage::url($menuItem->image) : null,
-            'public_path' => $menuItem->image ? public_path('storage/' . $menuItem->image) : null,
-            'file_exists' => $menuItem->image ? file_exists(public_path('storage/' . $menuItem->image)) : false,
-        ] : null,
-        'public_storage_exists' => file_exists(public_path('storage')),
-        'storage_app_public_exists' => file_exists(storage_path('app/public')),
-    ];
-});
+// Universal image serving route - ADD THIS
+Route::get('/images/{folder}/{filename}', function ($folder, $filename) {
+    $validFolders = ['logos', 'menu_items', 'ingredients', 'menu_items_backup'];
+    
+    if (!in_array($folder, $validFolders)) {
+        abort(404);
+    }
+    
+    $path = storage_path("app/public/{$folder}/{$filename}");
+    
+    if (!file_exists($path)) {
+        abort(404);
+    }
+    
+    return response()->file($path);
+})->name('image.serve');
 
 // Lightweight ping endpoint for runtime diagnostics
 Route::get('/ping', fn() => response()->json([
