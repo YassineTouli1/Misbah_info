@@ -64,17 +64,14 @@
                             <td class="item-price">{{ number_format($item->price, 2, ',', ' ') }} MAD</td>
                             <td>
                                 <div class="item-image-container">
-                                    @if($item->image)
-                                        <img src="{{ image_url($item->image) }}" 
-                                             alt="{{ $item->name }}"
-                                             class="item-image"
-                                             style="max-width: 100px; max-height: 100px; object-fit: cover;"
-                                             onerror="this.onerror=null; this.src='{{ asset('images/placeholder.jpg') }}';">
-                                    @else
-                                        <div class="no-image" style="width: 100px; height: 100px; background: #eee; display: flex; align-items: center; justify-content: center;">
-                                            <i class="fas fa-camera" style="font-size: 2rem; color: #999;"></i>
-                                        </div>
-                                    @endif
+                                    @php
+                                        $imageUrl = image_url($item->image, asset('images/placeholder.jpg'));
+                                    @endphp
+                                    <img src="{{ $imageUrl }}" 
+                                         alt="{{ $item->name }}"
+                                         class="item-image"
+                                         style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #eee;"
+                                         onerror="this.onerror=null; this.src='{{ asset('images/placeholder.jpg') }}';">
                                 </div>
                             </td>
                             <td>

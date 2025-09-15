@@ -86,11 +86,16 @@
                 <div class="form-group">
                     <label>Image actuelle</label>
                     <div class="current-image-container">
-                        @if($menuItem->image)
-                            <img src="{{ image_url($menuItem->image) }}" 
+                        @php
+                            $imageUrl = $menuItem->image ? image_url($menuItem->image) : null;
+                        @endphp
+                        
+                        @if($imageUrl)
+                            <img src="{{ $imageUrl }}" 
                                  alt="{{ $menuItem->name }}" 
                                  class="current-image" 
-                                 style="max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid #eee;">
+                                 style="max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid #eee;"
+                                 onerror="this.onerror=null; this.src='{{ asset('images/placeholder.jpg') }}';">
                         @else
                             <div class="no-image" style="width: 200px; height: 200px; background: #f5f5f5; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #ddd; border-radius: 8px;">
                                 <i class="fas fa-camera" style="font-size: 2rem; color: #999; margin-bottom: 10px;"></i>
