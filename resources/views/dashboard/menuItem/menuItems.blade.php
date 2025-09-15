@@ -65,7 +65,7 @@
                             <td>
                                 <div class="item-image-container">
                                     @if($item->image)
-                                        <img src="{{ Storage::url($item->image) }}"
+                                        <img src="{{ Storage::url('menu_items/' . $item->image) }}"
                                              alt="{{ $item->name }}"
                                              class="item-image"
                                              style="max-width: 100px; max-height: 100px;"
