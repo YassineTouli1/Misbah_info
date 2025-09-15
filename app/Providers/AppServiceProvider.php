@@ -23,10 +23,34 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
+        // Force HTTPS in production
         if (app()->environment('production')) {
             URL::forceScheme('https');
         }
+
+        // Add a global helper function to get image URLs
+        $this->app->bind('image_url', function ($path) {
+            if (empty($path)) {
+                return asset('images/placeholder.jpg');
+            }
+            
+            // Remove any leading slashes to prevent double slashes
+            $path = ltrim($path, '/');
+            
+            // Check if the path is already a full URL
+            if (filter_var($path, FILTER_VALIDATE_URL)) {
+                return $path;
+            }
+            
+            // Check if the file exists in the public storage
+            $storagePath = storage_path('app/public/' . $path);
+            if (file_exists($storagePath)) {
+                return asset('storage/' . $path);
+            }
+            
+            // Fallback to the path as is
+            return asset($path);
+        });
 
         // Be defensive during composer package:discover and early boot where DB may not be ready
         try {

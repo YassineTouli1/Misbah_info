@@ -87,10 +87,14 @@
                     <label>Image actuelle</label>
                     <div class="current-image-container">
                         @if($menuItem->image)
-                            <img src="{{ asset('storage/' . $menuItem->image) }}" alt="{{ $menuItem->name }}" class="current-image">
+                            <img src="{{ image_url($menuItem->image) }}" 
+                                 alt="{{ $menuItem->name }}" 
+                                 class="current-image" 
+                                 style="max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid #eee;">
                         @else
-                            <div class="no-image">
-                                <i class="fas fa-camera"></i> Aucune image
+                            <div class="no-image" style="width: 200px; height: 200px; background: #f5f5f5; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #ddd; border-radius: 8px;">
+                                <i class="fas fa-camera" style="font-size: 2rem; color: #999; margin-bottom: 10px;"></i>
+                                <span style="color: #666; font-size: 0.9rem;">Aucune image</span>
                             </div>
                         @endif
                     </div>
