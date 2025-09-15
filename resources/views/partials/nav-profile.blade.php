@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="{{ route('client.home') }}">
             @if($settings && $settings->logo_path)
-                <img src="{{ asset('storage/' . $settings->logo_path) }}" alt="Logo" class="me-2" style="height: 30px; border-radius: 5px;">
+                <img src="{{ route('image.serve', ['folder' => 'logos', 'filename' => basename($settings->logo_path)]) }}" alt="Logo" class="me-2" style="height: 30px; border-radius: 5px;">
             @endif
             <span class="d-none d-sm-inline">Snack <span style="color: var(--primary)">El Madina</span></span>
         </a>

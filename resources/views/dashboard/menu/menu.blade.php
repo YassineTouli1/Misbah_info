@@ -59,7 +59,7 @@
                             <ul class="menu-items-list">
                                 @foreach ($menu->menuItems as $item)
                                     <li class="menu-item">
-                                        <img src="{{ asset('storage/'.$item->image) }}"
+                                        <img src="{{ route('image.serve', ['folder' => 'menu_items', 'filename' => basename($item->image)]) }}"
                                              alt="{{ $item->name }}"
                                              class="menu-item-image"
                                              onerror="this.onerror=null;this.src='{{ asset('images/placeholder.png') }}';">

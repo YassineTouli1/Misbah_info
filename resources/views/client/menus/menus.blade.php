@@ -364,7 +364,7 @@
                                     <div class="dish-left">
                                         @if($item->image)
                                             <div class="dish-image-container">
-                                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="dish-image">
+                                                <img src="{{ route('image.serve', ['folder' => 'menu_items', 'filename' => basename($item->image)]) }}" alt="{{ $item->name }}" class="dish-image">
                                             </div>
                                         @endif
                                         <div>

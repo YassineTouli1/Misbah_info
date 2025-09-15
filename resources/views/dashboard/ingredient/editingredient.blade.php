@@ -83,7 +83,7 @@
                 <div class="form-group">
                     <label for="image">Image actuelle :</label><br>
                     @if($ingredient->image)
-                        <img src="{{ asset('storage/' . $ingredient->image) }}" alt="Image actuelle" style="width: 100px; height: auto; margin-bottom: 10px; border-radius: 5px;">
+                        <img src="{{ route('image.serve', ['folder' => 'ingredients', 'filename' => basename($ingredient->image)]) }}" alt="Image actuelle" style="width: 100px; height: auto; margin-bottom: 10px; border-radius: 5px;">
                     @endif
 
                     <label for="image">Changer l’image :</label>

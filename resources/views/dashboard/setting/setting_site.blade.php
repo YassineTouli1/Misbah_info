@@ -66,7 +66,7 @@
                 <div class="form-group">
                     <label for="image">Logo actuelle :</label><br>
                     @if($settings->logo_path)
-                        <img src="{{ asset('storage/' . $settings->logo_path) }}" alt="Image actuelle" style="width: 100px; height: auto; margin-bottom: 10px; border-radius: 5px;">
+                        <img src="{{ route('image.serve', ['folder' => 'logos', 'filename' => basename($settings->logo_path)]) }}" alt="Image actuelle" style="width: 100px; height: auto; margin-bottom: 10px; border-radius: 5px;">
                     @endif
 
                     <label for="image">Changer l’image :</label>

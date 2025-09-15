@@ -86,12 +86,8 @@
                 <div class="form-group">
                     <label>Image actuelle</label>
                     <div class="current-image-container">
-                        @php
-                            $imageUrl = $menuItem->image ? image_url($menuItem->image) : null;
-                        @endphp
-                        
-                        @if($imageUrl)
-                            <img src="{{ $imageUrl }}" 
+                        @if($menuItem->image)
+                            <img src="{{ route('image.serve', ['folder' => 'menu_items', 'filename' => basename($menuItem->image)]) }}" 
                                  alt="{{ $menuItem->name }}" 
                                  class="current-image" 
                                  style="max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid #eee;"

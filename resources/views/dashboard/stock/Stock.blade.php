@@ -42,7 +42,7 @@
                 <div class="ingredient-card">
                     <div class="ingredient-image">
                         @if($Stock->ingredient->image)
-                            <img src="{{ asset('storage/' . $Stock->ingredient->image) }}" alt="{{ $Stock->ingredient->name }}">
+                            <img src="{{ route('image.serve', ['folder' => 'ingredients', 'filename' => basename($Stock->ingredient->image)]) }}" alt="{{ $Stock->ingredient->name }}">
                         @else
                             <div class="no-image">No Image</div>
                         @endif

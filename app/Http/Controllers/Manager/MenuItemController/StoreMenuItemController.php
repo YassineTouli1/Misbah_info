@@ -24,8 +24,11 @@ class StoreMenuItemController extends Controller
 
 
         if ($request->hasFile('image')) {
-            // Store in storage/app/public/menu_items/filename.extension
-            $imagePath = $request->file('image')->store('menu_items', 'public');
+            // Store in dedicated menu_items directory with date structure
+            $path = 'menu_items/' . date('Y/m/d');
+            $imagePath = $request->file('image')->store('public/' . $path);
+            // Convert to the path that will be stored in the database (remove 'public/' prefix)
+            $imagePath = str_replace('public/', '', $imagePath);
 
             $menuItem = MenuItem::create([
                 'name' => $validated['name'],
