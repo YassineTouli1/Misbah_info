@@ -13,7 +13,7 @@ class EditStockController extends Controller
     public function __invoke($id)
     {
         $ingredient = Ingredient::findOrFail($id);
-        return view('dashboard.ingredient.editIngredient', compact('ingredient'));
+        return view('dashboard.ingredient.editingredient', compact('ingredient'));
     }
 }
 
