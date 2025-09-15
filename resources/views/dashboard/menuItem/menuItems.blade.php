@@ -61,10 +61,11 @@
                     @foreach($menuItems as $item)
                         <tr>
                             <td>{{ $item->name }}</td>
+                            <!-- Debug: {{ $item->image }} -->
                             <td class="item-price">{{ number_format($item->price, 2, ',', ' ') }} MAD</td>
                             <td>
                                 <div class="item-image-container">
-                                    <img src="{{ route('image.serve', ['folder' => 'menu_items', 'filename' => $item->image]) }}" 
+                                    <img src="{{ route('image.serve', ['folder' => 'menu_items', 'filename' => basename($item->image)]) }}" 
                                          alt="{{ $item->name }}"
                                          class="item-image"
                                          style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #eee;"
