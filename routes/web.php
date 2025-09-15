@@ -4,6 +4,25 @@ use Illuminate\Support\Facades\Route;
 // Health check routes for Railway
 Route::get('/health', fn() => response()->json(['status' => 'ok']));
 
+// Debug route for image issues
+Route::get('/debug/images', function() {
+    $menuItem = \App\Models\MenuItem::first();
+    return [
+        'app_url' => config('app.url'),
+        'storage_url' => \Illuminate\Support\Facades\Storage::url('test'),
+        'first_menu_item' => $menuItem ? [
+            'id' => $menuItem->id,
+            'name' => $menuItem->name,
+            'image_path' => $menuItem->image,
+            'storage_url' => $menuItem->image ? \Illuminate\Support\Facades\Storage::url($menuItem->image) : null,
+            'public_path' => $menuItem->image ? public_path('storage/' . $menuItem->image) : null,
+            'file_exists' => $menuItem->image ? file_exists(public_path('storage/' . $menuItem->image)) : false,
+        ] : null,
+        'public_storage_exists' => file_exists(public_path('storage')),
+        'storage_app_public_exists' => file_exists(storage_path('app/public')),
+    ];
+});
+
 // Lightweight ping endpoint for runtime diagnostics
 Route::get('/ping', fn() => response()->json([
     'status' => 'ok',

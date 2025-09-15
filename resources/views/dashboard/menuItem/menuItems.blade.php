@@ -65,12 +65,13 @@
                             <td>
                                 <div class="item-image-container">
                                     @if($item->image)
-                                        <img src="{{ Storage::url($item->image) }}"
+                                        <img src="{{ asset($item->image) }}"
                                              alt="{{ $item->name }}"
-                                             class="item-image">
+                                             class="item-image"
+                                             style="max-width: 100px; max-height: 100px;">
                                     @else
-                                        <div class="no-image">
-                                            <i class="fas fa-camera"></i>
+                                        <div class="no-image" style="width: 100px; height: 100px; background: #eee; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-camera" style="font-size: 2rem; color: #999;"></i>
                                         </div>
                                     @endif
                                 </div>

@@ -24,7 +24,16 @@ class StoreMenuItemController extends Controller
 
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('menu_items', 'public');
+            // Create directory if it doesn't exist
+            $path = public_path('images/menu_items');
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            
+            // Store the file
+            $imageName = time().'_'.$request->file('image')->getClientOriginalName();
+            $request->file('image')->move($path, $imageName);
+            $imagePath = 'images/menu_items/'.$imageName;
 
             $menuItem = MenuItem::create([
                 'name' => $validated['name'],
