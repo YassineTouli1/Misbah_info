@@ -24,20 +24,12 @@ class UpdateMenuItemController extends Controller
         // Gestion de l'image
         if ($request->hasFile('image')) {
             // Delete old image if it exists
-            if ($menuItem->image && file_exists(public_path($menuItem->image))) {
-                unlink(public_path($menuItem->image));
-            }
-            
-            // Create directory if it doesn't exist
-            $path = public_path('images/menu_items');
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
+            if ($menuItem->image && Storage::disk('public')->exists($menuItem->image)) {
+                Storage::disk('public')->delete($menuItem->image);
             }
             
             // Store the new file
-            $imageName = time().'_'.$request->file('image')->getClientOriginalName();
-            $request->file('image')->move($path, $imageName);
-            $validated['image'] = 'images/menu_items/'.$imageName;
+            $validated['image'] = $request->file('image')->store('menu_items', 'public');
         } else {
             $validated['image'] = $menuItem->image;
         }

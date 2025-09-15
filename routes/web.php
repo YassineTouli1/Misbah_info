@@ -4,6 +4,33 @@ use Illuminate\Support\Facades\Route;
 // Health check routes for Railway
 Route::get('/health', fn() => response()->json(['status' => 'ok']));
 
+// Debug route for storage configuration
+Route::get('/debug/storage', function() {
+    $menuItem = \App\Models\MenuItem::first();
+    $storagePath = storage_path('app/public');
+    
+    return [
+        'app_url' => config('app.url'),
+        'storage_path' => $storagePath,
+        'storage_exists' => file_exists($storagePath),
+        'public_storage_exists' => file_exists(public_path('storage')),
+        'is_link' => is_link(public_path('storage')),
+        'first_menu_item' => $menuItem ? [
+            'id' => $menuItem->id,
+            'name' => $menuItem->name,
+            'image_path' => $menuItem->image,
+            'storage_url' => Storage::url($menuItem->image),
+            'full_path' => storage_path('app/public/' . $menuItem->image),
+            'file_exists' => Storage::disk('public')->exists($menuItem->image),
+        ] : null,
+        'storage_disk_config' => [
+            'driver' => config('filesystems.disks.public.driver'),
+            'root' => config('filesystems.disks.public.root'),
+            'url' => config('filesystems.disks.public.url'),
+        ],
+    ];
+});
+
 // Debug route for image issues
 Route::get('/debug/images', function() {
     $menuItem = \App\Models\MenuItem::first();

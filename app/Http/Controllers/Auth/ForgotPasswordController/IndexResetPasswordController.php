@@ -9,6 +9,6 @@ class IndexResetPasswordController extends Controller
 {
 
     public function __invoke(Request $request,$token){
-        return view('auth.reset', ['token' => $token, 'email' => $request->email]);
+        return view('Auth.reset', ['token' => $token, 'email' => $request->email]);
     }
 }
