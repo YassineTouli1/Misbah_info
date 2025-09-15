@@ -24,6 +24,7 @@ class StoreMenuItemController extends Controller
 
 
         if ($request->hasFile('image')) {
+            // Store in storage/app/public/menu_items/filename.extension
             $imagePath = $request->file('image')->store('menu_items', 'public');
 
             $menuItem = MenuItem::create([
