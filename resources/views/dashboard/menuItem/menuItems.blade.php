@@ -64,10 +64,7 @@
                             <td class="item-price">{{ number_format($item->price, 2, ',', ' ') }} MAD</td>
                             <td>
                                 <div class="item-image-container">
-                                    @php
-                                        $imageUrl = image_url($item->image, asset('images/placeholder.jpg'));
-                                    @endphp
-                                    <img src="{{ $imageUrl }}" 
+                                    <img src="{{ route('image.serve', ['folder' => 'menu_items', 'filename' => $item->image]) }}" 
                                          alt="{{ $item->name }}"
                                          class="item-image"
                                          style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #eee;"
