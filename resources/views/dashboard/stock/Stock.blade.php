@@ -51,7 +51,7 @@
                         <h3>{{ $Stock->ingredient->name }}</h3>
                         <div class="ingredient-info">
                             <span class="info-label">Quantity:</span>
-                            <span class="info-value">{{ $Stock->ingredient->quantite }} g</span>
+                            <span class="info-value">{{ $Stock->ingredient->quantite }} Unités</span>
                         </div>
                         <div class="ingredient-info">
                             <span class="info-label">Price:</span>
